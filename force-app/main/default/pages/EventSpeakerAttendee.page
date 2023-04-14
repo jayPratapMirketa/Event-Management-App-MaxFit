@@ -1,0 +1,70 @@
+<!-- Declares the Visualforce page with a reference to the controller class. -->
+<apex:page controller="EventSpeakerAttendeeController">
+    
+    <!-- Defines a Visualforce page block with the title "Event Details" and some nested content. -->
+    <apex:pageBlock title="Event Details">
+        
+        <!-- Displays the name and organizer of the event using an Apex outputText tag with some style properties. -->
+        <div style="text-align:center; margin-bottom:25px">
+        <apex:outputText value="Event: {0}" style="font-size:25px; text-align:center">
+            <apex:param value="{!event.Name}"/>
+        </apex:outputText>
+        <br/>
+        
+        <apex:outputText value="Organized By: {0}" style="font-size:25px; text-align:center;">
+            <apex:param value="{!event.Event_Organizer__c}"/>
+        </apex:outputText>
+        <br/>
+        </div>
+        
+        <!-- Displays the location of the event using another Apex outputText tag. -->
+        <apex:outputText value="Location: {0}" style="font-size:18px; margin:20px;">
+            <apex:param value="{!event.Location__c}"/>
+        </apex:outputText>
+        <br/>
+        
+        <!-- Displays the start date and time of the event using another Apex outputText tag. -->
+        <apex:outputText value="Date and Time: {0}" style="font-size:18px; margin:20px;">
+            <apex:param value="{!event.Start__c}"/>
+        </apex:outputText>
+        <br/>
+       
+        
+        <!-- . Defines a page block section for displaying the speakers at the event. -->
+        <div style="margin-top:40px;">
+        <apex:pageBlockSection title="Speakers" collapsible="false" columns="3">
+        
+            
+
+            <!-- Uses an Apex repeat tag to loop through a list of speakers and display their name, profile URL, and "About Me" text using an Apex outputText tag. -->
+            <apex:repeat value="{!eventSpeaker}" var="eveSpeaker">
+            
+                <apex:pageBlockSection title="{!eveSpeaker.Speaker__r.Name}">
+                
+                    <div style="width: 33%">
+                        <apex:outputText value="Profile URL: {0}" style="font-size:12px;">
+                            <apex:param value="{!eveSpeaker.Speaker__r.Profile_URL__c}"/>
+                        </apex:outputText>
+                        <br/>
+                    
+                        <apex:outputText value="About Me: {0}" style="font-size:12px;">
+                            <apex:param value="{!eveSpeaker.Speaker__r.About_Me__c}"/>
+                        </apex:outputText>
+                        <br/>
+                    </div>
+                </apex:pageBlockSection>
+         
+            </apex:repeat>
+            
+        </apex:pageBlockSection>
+        </div>
+        
+        
+        <!-- Defines a form with two buttons for attendee and speaker registration, each calling a respective method in the controller class. -->
+        <apex:form style="text-align:center;">
+            <apex:commandButton value="Attendee Registration" action="{!doAttendeeAction}" style="margin: 20px"/>
+            <apex:commandButton value="Speaker Registration" action="{!doSpeakerAction}"/>
+        </apex:form>
+        
+    </apex:pageBlock>
+</apex:page>

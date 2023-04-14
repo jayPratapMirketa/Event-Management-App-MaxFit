@@ -1,0 +1,29 @@
+<!-- Visualforce page for Speaker Registration with a custom controller -->
+<apex:page controller="SpeakerRegistrationCustomController" title="Speaker Registration">
+
+    <!-- The form that will be submitted on user's input -->
+    <apex:form >
+
+        <!-- A page block to group related input fields -->
+        <apex:pageBlock title="Speaker Registration">
+
+            <!-- A page block section to group input fields related to Speaker and EventSpeaker Object -->
+            <apex:pageBlockSection collapsible="false" columns="2">
+                <apex:inputField required="true" value="{! speaker.Name }"/>
+                <apex:inputField required="true" value="{! speaker.Company__c }"/>
+                <apex:inputField required="true" value="{! speaker.Email__c }"/>
+                <apex:inputField required="true" value="{! speaker.Phone__c }"/>
+                <apex:inputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.Event__c == null}"/>
+                <apex:outputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.Event__c != null}"/>
+            </apex:pageBlockSection>  
+
+            <!-- A set of buttons that are placed at the bottom of a page block. -->
+            <apex:pageBlockButtons location="bottom">
+
+                <!-- A button labeled "save" that, when clicked, triggers the saveRecord action defined in the controller for this page. -->
+                <apex:commandButton value="save" action="{!saveRecord}"/>
+
+            </apex:pageBlockButtons>
+        </apex:pageBlock>        
+    </apex:form>
+</apex:page>

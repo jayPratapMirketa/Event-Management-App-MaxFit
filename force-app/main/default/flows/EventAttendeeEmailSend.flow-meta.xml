@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Develop a Flow on Event Attendee Object (Whenever a New Record gets created) to send the email to Attendee saying that registration has been confirmed. Use the below format for email</description>
+        <name>Email_on_EventAttendee_Creation</name>
+        <label>Email on EventAttendee Creation</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EventAttendeeEmailTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Attendees__r.Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>EventAttendeeSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <description>A Flow on Event Attendee Object (Whenever a New Record gets created) to send the email to Attendee saying that registration has been confirmed. Use the below format for email</description>
+    <environments>Default</environments>
+    <interviewLabel>EventAttendeeEmailSend {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>EventAttendeeEmailSend</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Email_on_EventAttendee_Creation</targetReference>
+        </connector>
+        <object>Event_Attendee__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <description>Subject send for eventAttendee</description>
+        <name>EventAttendeeEmailSubject2</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: WordVisi_MSFontService, Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-serif; color: rgb(51, 51, 51); background-color: rgba(0, 0, 0, 0);&quot;&gt;Pass for the {!$Record.Event__r.Name__c}&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>This email is send to event attendee on a new registration.</description>
+        <name>EventAttendeeEmailTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear {!$Record.Name},&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: WordVisi_MSFontService, Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-serif; color: rgb(51, 51, 51); background-color: rgba(0, 0, 0, 0);&quot;&gt;Thank you for registering for {!$Record.Event__r.Name} which will be Organized on {!$Record.Event__r.Start__c} &amp;amp; will be held in {!$Record.Event__r.Location__r.Name} &lt;/span&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-serif; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);&quot;&gt;. We are excited to have you, see you at the event.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-serif; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);&quot;&gt;Thanks,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13.3333px; font-family: Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-serif; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.Event__r.Event_Organizer__r.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Subject for sending the email to event attendee whenever a record is created.</description>
+        <name>EventAttendeeSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Pass for the {!$Record.Event__r.Name}</text>
+    </textTemplates>
+</Flow>

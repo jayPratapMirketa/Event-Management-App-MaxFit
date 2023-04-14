@@ -1,0 +1,49 @@
+<!-- Visualforce page for Event Registration with a custom controller -->
+<apex:page controller="EventRegistrationCustomController" title="Event Registration">
+
+    <!-- The form that will be submitted on user's input -->
+    <apex:form >
+
+        <!-- A page block to group related input fields -->
+        <apex:pageBlock title="Event Registration">
+
+            <!-- A page block section to group input fields related to event organizer -->
+            <apex:pageBlockSection title="Event Organizer" collapsible="true" columns="2">
+                <apex:inputField required="true" value="{! eventOrg.Name }"/>
+                <apex:inputField required="true" value="{! eventOrg.Email__c }"/>
+                <apex:inputField value="{! eventOrg.Alternative_Email__c }"/>
+                <apex:inputField required="true" value="{! eventOrg.Phone__c }"/>
+                <apex:inputField value="{! eventOrg.Alternative_Phone__c }"/>
+            </apex:pageBlockSection>  
+    
+            <!-- A page block section to group input fields related to the event -->
+            <apex:pageBlockSection title="Event" collapsible="true" columns="2">
+                <apex:inputField required="true" value="{! event.Name__c }"/>
+                <apex:inputField value="{! event.Status__c }"/>
+                <apex:inputField required="true" value="{! event.Start__c }"/>
+                <apex:inputField value="{! event.End__c }"/>
+                <apex:inputField required="true" value="{! event.Live__c }"/>
+                <apex:inputField value="{! event.Event_Type__c }"/>
+                <apex:inputField value="{! event.Max_Seats__c }"/>
+                <apex:inputField value="{! event.Recurring__c }"/>
+                <apex:inputField value="{! event.Frequency__c }"/>
+            </apex:pageBlockSection>  
+            
+             <!-- A page block section to group input fields related to the event location -->
+            <apex:pageBlockSection title="Event Location" collapsible="true" columns="2">
+                <apex:inputField value="{! locationEvent.Landmark__c }"/>
+                <apex:inputField value="{! locationEvent.Street__c }"/>
+                <apex:inputField required="true" value="{! locationEvent.City__c }"/>
+                <apex:inputField required="true" value="{! locationEvent.Postal_Code__c }"/>
+                <apex:inputField value="{! locationEvent.State__c }"/>
+                <apex:inputField value="{! locationEvent.Country__c }"/>
+            </apex:pageBlockSection>
+    
+                
+            <!-- A button labeled "save" that, when clicked, triggers the saveRecord action defined in the controller for this page. -->
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="save" action="{!saveRecord}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>        
+    </apex:form>
+</apex:page>
