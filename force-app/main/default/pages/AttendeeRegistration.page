@@ -13,7 +13,8 @@
                 <apex:inputField required="true" value="{! attendee.Company_Name__c }"/>
                 <apex:inputField required="true" value="{! attendee.Email__c }"/>
                 <apex:inputField required="true" value="{! attendee.Phone__c }"/>
-                <apex:inputField value="{! eventAttendee.event__c }" />
+                <apex:inputField value="{! eventAttendee.event__c }" rendered="{!eventAttendee.event__c == null}"/>
+                <apex:outputField value="{! eventAttendee.event__c }" rendered="{!eventAttendee.event__c != null}"/>
                 
             </apex:pageBlockSection>  
 

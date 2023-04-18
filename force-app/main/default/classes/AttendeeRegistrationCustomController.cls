@@ -37,7 +37,7 @@ public with sharing class AttendeeRegistrationCustomController {
 
         try {
 
-
+            insert locationAttendee;
             // Set the Address__c field on the Attendees__c record to the ID of the Location_Address_Book__c record
             attendee.Address__c = locationAttendee.id;
             // Insert the Attendees__c record
@@ -51,7 +51,7 @@ public with sharing class AttendeeRegistrationCustomController {
             // Clear the instance variables for a new registration
             locationAttendee = new Location_Address_Book__c();
             attendee = new Attendees__c();
-            eventAttendee = new Event_Attendee__c();
+            // eventAttendee = new Event_Attendee__c();
 
             
 

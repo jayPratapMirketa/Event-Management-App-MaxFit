@@ -10,11 +10,11 @@
             <!-- A page block section to group input fields related to Speaker and EventSpeaker Object -->
             <apex:pageBlockSection collapsible="false" columns="2">
                 <apex:inputField required="true" value="{! speaker.Name }"/>
-                <apex:inputField required="true" value="{! speaker.Company__c }"/>
+                <apex:inputField value="{! speaker.Company__c }"/>
                 <apex:inputField required="true" value="{! speaker.Email__c }"/>
-                <apex:inputField required="true" value="{! speaker.Phone__c }"/>
-                <apex:inputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.Event__c == null}"/>
-                <apex:outputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.Event__c != null}"/>
+                <apex:inputField value="{! speaker.Phone__c }"/>
+                <apex:inputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.event__c == null}"/>
+                <apex:outputField value="{! eventSpeaker.event__c }" rendered="{!eventSpeaker.event__c != null}"/>
             </apex:pageBlockSection>  
 
             <!-- A set of buttons that are placed at the bottom of a page block. -->

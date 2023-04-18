@@ -11,7 +11,8 @@ global with sharing class EventWebService {
 
         List<Event__c> result = [
             // This SOQL query selects the Name, Max_Seats, Start, and related fields for all Event__c records.
-            Select Name__c, Max_Seats__c, Start__c, Event_Organizer__r.Name, Event_Organizer__r.Email__c FROM Event__c
+            Select Name__c, Max_Seats__c, Start__c, Event_Organizer__r.Name, Event_Organizer__r.Email__c 
+            FROM Event__c
         ];
 
         return result; // The result is returned to the API caller as a JSON-encoded list of records.

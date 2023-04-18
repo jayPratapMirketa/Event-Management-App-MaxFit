@@ -20,6 +20,7 @@
 		<members>SpeakerRegistrationCustomController</members>
 		<members>SpeakerWebService</members>
 		<members>SpeakerWebServiceTest</members>
+		<members>speakerWrapper</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -53,6 +54,17 @@
 		<members>Duplicate_Speaker_Check</members>
 		<members>EventAttendeeEmailSend</members>
 		<name>Flow</name>
+	</types>
+	<types>
+		<members>Event Attendee</members>
+		<members>Event Organizer</members>
+		<members>Speaker</members>
+		<name>Profile</name>
+	</types>
+	<types>
+		<members>Attendees__c</members>
+		<members>Speaker__c</members>
+		<name>SharingRules</name>
 	</types>
 	<types>
 		<members>Event_Attendee__c.AttendeeAssocitaionWithEventConditions</members>
